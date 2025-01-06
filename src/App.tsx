@@ -1,18 +1,18 @@
 import React from 'react';
-import { Hero } from './components/Hero';
-import { ContactForm } from './components/ContactForm';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { TermsOfUse } from './pages/TermsOfUse';
 
 function App() {
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <div className="relative min-h-screen">
-      <Hero onContactClick={scrollToContact} />
-      <ContactForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfUse />} />
+      </Routes>
+    </Router>
   );
 }
 
