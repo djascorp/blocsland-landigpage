@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Hero } from '../components/Hero';
+import { ContactForm } from '../components/ContactForm';
+import { Footer } from '../components/Footer';
+---
+
+<Layout title="BlocsLand - A world made of blocs">
+  <main>
+    <Hero client:load />
+    <ContactForm client:load />
+    <Footer />
+  </main>
+</Layout>

@@ -3,10 +3,25 @@ import { ScrollIndicator } from './ScrollIndicator';
 import blocslandBg from '../assets/img/blocsland.jpeg';
 
 interface HeroProps {
-  onContactClick: () => void;
+  onContactClick?: () => void;
 }
 
 export function Hero({ onContactClick }: HeroProps) {
+  const handleScroll = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleClick = () => {
+    if (onContactClick) {
+      onContactClick();
+    } else {
+      handleScroll();
+    }
+  };
+
   return (
     <div className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -32,7 +47,7 @@ export function Hero({ onContactClick }: HeroProps) {
           </p>
         </div>
         <button
-          onClick={onContactClick}
+          onClick={handleClick}
           className="group relative px-8 py-4 font-['Orbitron'] text-lg font-bold overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 via-blue-600 to-blue-500 text-white shadow-lg transition-all hover:scale-105 hover:shadow-blue-500/50"
         >
           <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 transition-opacity group-hover:opacity-100"></div>
@@ -40,7 +55,7 @@ export function Hero({ onContactClick }: HeroProps) {
         </button>
       </div>
 
-      <ScrollIndicator onClick={onContactClick} />
+      <ScrollIndicator onClick={handleClick} />
     </div>
   );
 }
